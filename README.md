@@ -10,6 +10,7 @@ Mac/Liunx 运行程序(python FanHao.py)即可。
 Windows用户请下载压缩包:[下载](https://raw.githubusercontent.com/ShenXuGongZi/FanHaoSearch/master/Win_Client.7z)
 
 预览:
+
 ![](http://ww2.sinaimg.cn/large/9b8b0d99tw1eigjqlxzclg20ho0al0z1.gif)
 
 
