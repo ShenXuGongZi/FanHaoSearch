@@ -1,6 +1,6 @@
 #-*- coding: cp936 -*
 #cp936
-from pip.backwardcompat import raw_input
+#from pip.backwardcompat import raw_input
 import urllib2
 import re
 import random

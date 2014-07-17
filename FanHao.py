@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*
-from pip.backwardcompat import raw_input
+#from pip.backwardcompat import raw_input
 import urllib
 import urllib2
 import re
