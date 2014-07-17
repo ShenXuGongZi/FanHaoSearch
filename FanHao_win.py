@@ -1,15 +1,16 @@
-#-*- coding: utf-8 -*
+#-*- coding: cp936 -*
 #cp936
-from pip.backwardcompat import raw_input
+#from pip.backwardcompat import raw_input
 import urllib2
 import re
 import random
 import webbrowser
+import sys
 
 print '#'*50
-print '#'+'ç•ªå·ä¸‹è½½å™¨'
+print '#'+'·¬ºÅÏÂÔØÆ÷'
 print '#'*50
-print '-'*20+'å¼€å§‹è·å–ä»£ç†'+'-'*20
+print '-'*20+'¿ªÊ¼»ñÈ¡´úÀí'+'-'*20
 
 proxy_txt = open('proxy_list.txt','w')
 proxy_tr = re.compile("(?isu)<tr[^>]*>(.*?)</tr>")
@@ -21,16 +22,16 @@ try:
     HtmlRead = GetProxy.read()
 except Exception:
     print '-'*50
-    print 'é‡‡é›†ä»£ç†é”™è¯¯ï¼Œè¯·æ£€æŸ¥æ‚¨çš„ç½‘ç»œæ˜¯å¦æ­£å¸¸ï¼'
+    print '²É¼¯´úÀí´íÎó£¬Çë¼ì²éÄúµÄÍøÂçÊÇ·ñÕı³££¡'
     print '-'*50
-    raw_input('æŒ‰å›è½¦ç»“æŸç¨‹åº:')
+    raw_input('°´»Ø³µ½áÊø³ÌĞò:')
 else:
     for row in proxy_tr.findall(HtmlRead):
         for col in proxy_td.findall(row)[:1]:
             proxy_txt.write(col+'\n')
     proxy_txt.close()
 
-print '-'*20+'è·å–ä»£ç†å®Œæ¯•'+'-'*20
+print '-'*20+'»ñÈ¡´úÀíÍê±Ï'+'-'*20
 
 open_proxy = open('proxy_list.txt','r')
 line0 = open_proxy.readlines()
@@ -42,17 +43,17 @@ opener = urllib2.build_opener(proxy_handler)
 urllib2.install_opener(opener)
 
 print '#'*50
-print '##è‚¾è™šå…¬å­åˆ¶ä½œ'
-print '##é¡¹ç›®ä¸»é¡µ: FanHao.miaowu.asia'
+print '##ÉöĞé¹«×ÓÖÆ×÷'
+print '##ÏîÄ¿Ö÷Ò³: FanHao.miaowu.asia'
 print '#'*50
-Fanhao = raw_input('è¯·è¾“å…¥ç•ªå·:')
+Fanhao = raw_input('ÇëÊäÈë·¬ºÅ:')
 
 FanHao_style = open('FanHao.html','w')
-FanHao_NR = '<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">'+'\n'+'<center><h3>è‚¾è™šå…¬å­ç•ªå·é‡‡é›†å™¨</h3><hr/><p>æœ¬è½¯ä»¶èµ„æ–™æ¥æºäºç½‘ç»œï¼Œå¦‚æœ‰å¼‚è®®è¯·è”ç³»ä½œè€…</p><br/><table class="table table-striped table-hover"></center>'
+FanHao_NR = '<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">'+'\n'+'<center><h3>ÉöĞé¹«×Ó·¬ºÅ²É¼¯Æ÷</h3><hr/><p>±¾Èí¼ş×ÊÁÏÀ´Ô´ÓÚÍøÂç£¬ÈçÓĞÒìÒéÇëÁªÏµ×÷Õß</p><br/><table class="table table-striped table-hover"></center>'
 FanHao_style.write(FanHao_NR)
 FanHao_style.close()
 
-proxy_txt = open('FanHao.html','a')
+Fanhao_html = open('FanHao.html','a')
 ZhuaQ_LJ = re.compile('(?isu)<table class="torrent_name_tbl">(.*?)</table>')
 proxy_ua = {'User-Agent:':'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36','Accept-Language:':'zh-CN,zh;q=0.8'}
 proxy_url = urllib2.Request(url='http://btdigg.org/search?info_hash=&q='+Fanhao ,headers=proxy_ua)
@@ -60,9 +61,12 @@ proxy_url = urllib2.Request(url='http://btdigg.org/search?info_hash=&q='+Fanhao 
 GetProxy = urllib2.urlopen(proxy_url)
 HtmlRead = GetProxy.read()
 for LianJ in ZhuaQ_LJ.findall(HtmlRead):
-        proxy_txt.write(LianJ+'\n')
+        type2 = sys.getfilesystemencoding()
+        xieru = LianJ.decode('utf-8').encode(type2)
+        Fanhao_html.write(xieru+'\n')
+        
 
-proxy_txt.close()
+Fanhao_html.close()
 #
 FanHao_style_end = open('FanHao.html','a')
 FanHao_NR_end = '</table>'
@@ -82,7 +86,7 @@ def tihuan(tiH,tiH2):
 dl2 = tihuan('title="Add to BTCloud"','style="display:none;"')
 dl3 = tihuan('class="attr_name"','style="display:none;"')
 dl4 = tihuan('class="attr_val"','style="display:none;"')
-dl5 = tihuan('magnet-link','ç£åŠ›è¿æ¥')
+dl5 = tihuan('magnet-link','´ÅÁ¦Á¬½Ó')
 
 dl2
 dl3
@@ -90,10 +94,10 @@ dl4
 dl5
 
 print '#'*50
-print '>'*10+'ç•ªå·è·å–æˆåŠŸ'
+print '>'*10+'·¬ºÅ»ñÈ¡³É¹¦'
 print '#'*50
 
-raw_input('æŒ‰å›è½¦æŸ¥çœ‹ç»“æœ:')
+raw_input('°´»Ø³µ²é¿´½á¹û:')
 
 open_url = webbrowser.open("FanHao.html")
 

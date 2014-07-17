@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*
-from pip.backwardcompat import raw_input
+#from pip.backwardcompat import raw_input
 import urllib
 import urllib2
 import re
@@ -70,7 +70,7 @@ FanHao_NR = '<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0
 FanHao_style.write(FanHao_NR)
 FanHao_style.close()
 
-proxy_txt = open('FanHao.html','a')
+Fanhao_html = open('FanHao.html','a')
 ZhuaQ_LJ = re.compile('(?isu)<table class="torrent_name_tbl">(.*?)</table>')
 #UA模拟
 proxy_ua = {'User-Agent:':'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36','Accept-Language:':'zh-CN,zh;q=0.8'}
@@ -81,9 +81,9 @@ GetProxy = urllib2.urlopen(proxy_url)
 HtmlRead = GetProxy.read()
 #遍历所有网页找到规则并读取
 for LianJ in ZhuaQ_LJ.findall(HtmlRead):
-        proxy_txt.write(LianJ+'\n')
+        Fanhao_html.write(LianJ+'\n')
 
-proxy_txt.close()
+Fanhao_html.close()
 #
 FanHao_style_end = open('FanHao.html','a')
 FanHao_NR_end = '</table>'
