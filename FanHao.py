@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*
-#from pip.backwardcompat import raw_input
+from pip.backwardcompat import raw_input
 import urllib
 import urllib2
 import re
@@ -75,7 +75,7 @@ ZhuaQ_LJ = re.compile('(?isu)<table class="torrent_name_tbl">(.*?)</table>')
 #UA模拟
 proxy_ua = {'User-Agent:':'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36','Accept-Language:':'zh-CN,zh;q=0.8'}
 #Request连接网页
-proxy_url = urllib2.Request(url='http://btdigg.org/search?info_hash=&q='+Fanhao ,headers=proxy_ua)
+proxy_url = urllib2.Request(url='https://btdigg.org/search?info_hash=&q='+Fanhao ,headers=proxy_ua)
 
 GetProxy = urllib2.urlopen(proxy_url)
 HtmlRead = GetProxy.read()
