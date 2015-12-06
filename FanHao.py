@@ -8,9 +8,9 @@ import random
 import webbrowser
 
 print '#'*50
-print '#'+'番号下载器'
+print '#'+u'番号下载器'
 print '#'*50
-print '-'*20+'开始获取代理'+'-'*20
+print '-'*20+u'开始获取代理'+'-'*20
 
 ################################### 开始全局代理 ##############################
 #采集代理信息
@@ -28,9 +28,9 @@ try:
 #如果错误
 except Exception:
     print '-'*50
-    print '采集代理错误，请检查您的网络是否正常！'
+    print u'采集代理错误，请检查您的网络是否正常！'
     print '-'*50
-    raw_input('按回车结束程序:')
+    raw_input(u'按回车结束程序:')
 #没有错误继续执行
 else:
     #遍历所有网页找到规则并读取
@@ -40,7 +40,7 @@ else:
             proxy_txt.write(col+'\n')
     proxy_txt.close()
 
-print '-'*20+'获取代理完毕'+'-'*20
+print '-'*20+u'获取代理完毕'+'-'*20
 ################################### 采集代理结束 ##############################
 
 ################################### 开始全局代理 ##############################
@@ -63,7 +63,7 @@ print '##项目主页: FanHao.miaowu.asia'
 print '#'*50
 #番号名称
 #FanHao = raw_input('请输入番号:')
-Fanhao = raw_input('请输入番号:')
+Fanhao = raw_input(u'请输入番号:')
 
 FanHao_style = open('FanHao.html','w')
 FanHao_NR = '<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">'+'\n'+'<center><h3>肾虚公子番号采集器</h3><hr/><p>本软件资料来源于网络，如有异议请联系作者</p><br/><table class="table table-striped table-hover"></center>'
@@ -105,7 +105,7 @@ def tihuan(tiH,tiH2):
 dl2 = tihuan('title="Add to BTCloud"','style="display:none;"')
 dl3 = tihuan('class="attr_name"','style="display:none;"')
 dl4 = tihuan('class="attr_val"','style="display:none;"')
-dl5 = tihuan('magnet-link','磁力连接')
+dl5 = tihuan('magnet-link',u'磁力连接')
 
 dl2
 dl3
@@ -113,10 +113,10 @@ dl4
 dl5
 
 print '#'*50
-print '>'*10+'番号获取成功'
+print '>'*10+u'番号获取成功'
 print '#'*50
 
-raw_input('按回车查看结果:')
+raw_input(u'按回车查看结果:')
 
 open_url = webbrowser.open("FanHao.html")
 
