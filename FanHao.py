@@ -6,6 +6,7 @@ import re
 import shutil
 import random
 import webbrowser
+import sys
 
 print '#'*50
 print '#'+u'番号下载器'
@@ -48,7 +49,7 @@ print '-'*20+u'获取代理完毕'+'-'*20
 open_proxy = open('proxy_list.txt','r')
 line0 = open_proxy.readlines()
 open_proxy.close()
-#随即选行
+#随机选行
 proxy_line = random.choice(line0)
 #进行全局代理
 proxy_handler = urllib2.ProxyHandler({'http://':'%s'%proxy_line})
@@ -75,10 +76,14 @@ ZhuaQ_LJ = re.compile('(?isu)<table class="torrent_name_tbl">(.*?)</table>')
 #UA模拟
 proxy_ua = {'User-Agent:':'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36','Accept-Language:':'zh-CN,zh;q=0.8'}
 #Request连接网页
-proxy_url = urllib2.Request(url='https://btdigg.org/search?info_hash=&q='+Fanhao ,headers=proxy_ua)
-
-GetProxy = urllib2.urlopen(proxy_url)
-HtmlRead = GetProxy.read()
+try:
+    proxy_url = urllib2.Request(url='https://btdigg.org/search?info_hash=&q='+Fanhao ,headers=proxy_ua)
+    GetProxy = urllib2.urlopen(proxy_url)
+except:
+    print '你知道人家多努力吗！用代理也访问不了btdigg.org ,你还是自己撸算了 哼！'
+    sys.exit(0)
+else:
+    HtmlRead = GetProxy.read()
 #遍历所有网页找到规则并读取
 for LianJ in ZhuaQ_LJ.findall(HtmlRead):
         Fanhao_html.write(LianJ+'\n')
